@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AI Revolution - Advanced AI Website</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" />
+  <meta name="description" content="Explore the future of AI with AI Revolution — cutting-edge AI services, demos, and innovation." />
+</head>
+<body>
+  <header>
+    <nav class="nav-container">
+      <div class="logo">AI<span>Revolution</span></div>
+      <ul class="nav-links">
+        <li><a href="#about">About AI</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#demo">Demo</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <button class="menu-toggle" aria-label="Toggle navigation">&#9776;</button>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Welcome to AI Revolution</h1>
+      <p>Experience the power of Artificial Intelligence like never before.</p>
+      <a href="#demo" class="btn-primary">Try AI Demo</a>
+    </div>
+  </section>
+
+  <main>
+    <section id="about" class="section about">
+      <h2>About AI</h2>
+      <p>
+        Artificial Intelligence (AI) is transforming the world — enabling machines to learn, reason, and solve complex problems. Our mission is to bring AI innovations closer to you.
+      </p>
+    </section>
+
+    <section id="services" class="section services">
+      <h2>Our Services</h2>
+      <div class="service-cards">
+        <article class="card">
+          <h3>AI Consulting</h3>
+          <p>Expert advice on AI integration and strategy tailored to your business needs.</p>
+        </article>
+        <article class="card">
+          <h3>Custom AI Solutions</h3>
+          <p>End-to-end AI model development, deployment, and maintenance.</p>
+        </article>
+        <article class="card">
+          <h3>AI Workshops</h3>
+          <p>Hands-on workshops to train your team in AI, ML, and data science.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="demo" class="section demo">
+      <h2>AI Demo Chatbot</h2>
+      <div class="chat-container">
+        <div id="chat-window" class="chat-window"></div>
+        <form id="chat-form" class="chat-form">
+          <input type="text" id="user-input" placeholder="Ask me anything about AI..." autocomplete="off" required />
+          <button type="submit">Send</button>
+        </form>
+      </div>
+    </section>
+
+    <section id="contact" class="section contact">
+      <h2>Contact Us</h2>
+      <form id="contact-form" class="contact-form" novalidate>
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" required />
+        
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required />
+        
+        <label for="message">Message</label>
+        <textarea id="message" name="message" rows="4" required></textarea>
+        
+        <button type="submit">Send Message</button>
+      </form>
+      <p id="form-status" aria-live="polite"></p>
+    </section>
+  </main>
+
+  <header id="home" class="hero-section">
+  <div class="hero-content">
+    <h1 class="scramble-text" data-text="Welcome to AI Future">Welcome to AI Future</h1>
+    <p>Explore cutting-edge Artificial Intelligence technologies and solutions.</p>
+    <a href="#services" class="btn-primary">Explore Services</a>
+  </div>
+  <div class="hero-card" id="interactive-card">
+    <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=400&q=80" alt="AI Brain">
+  </div>
+  <div class="scroll-progress"></div>
+</header>
+
+
+  <footer>
+    <p>© 2025 AI Revolution. All rights reserved.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
