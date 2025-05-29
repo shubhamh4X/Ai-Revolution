@@ -246,3 +246,107 @@ const animateCursor = () => {
   requestAnimationFrame(animateCursor);
 };
 animateCursor();
+
+
+(() => {
+  const canvas = document.getElementById('ai-dots-bg');
+  const ctx = canvas.getContext('2d');
+
+  let width, height;
+  const dotsCount = 100;
+  const maxDistance = 150;
+  const dots = [];
+
+  // Dot object constructor
+  class Dot {
+    constructor() {
+      this.x = Math.random() * width;
+      this.y = Math.random() * height;
+      this.vx = (Math.random() - 0.5) * 0.7;
+      this.vy = (Math.random() - 0.5) * 0.7;
+      this.radius = 2 + Math.random() * 2;
+      this.baseRadius = this.radius;
+    }
+
+    update() {
+      this.x += this.vx;
+      this.y += this.vy;
+
+      // Bounce off edges
+      if (this.x < 0 || this.x > width) this.vx *= -1;
+      if (this.y < 0 || this.y > height) this.vy *= -1;
+
+      // Pulse radius for subtle glow effect
+      this.radius = this.baseRadius + Math.sin(Date.now() / 500 + this.x) * 0.5;
+    }
+
+    draw() {
+      const gradient = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.radius * 4);
+      gradient.addColorStop(0, 'rgba(0,188,212,0.9)');
+      gradient.addColorStop(1, 'rgba(0,188,212,0)');
+
+      ctx.beginPath();
+      ctx.fillStyle = gradient;
+      ctx.arc(this.x, this.y, this.radius * 2, 0, Math.PI * 2);
+      ctx.fill();
+    }
+  }
+
+  // Initialize canvas size and dots
+  function init() {
+    width = window.innerWidth;
+    height = window.innerHeight;
+    canvas.width = width * devicePixelRatio;
+    canvas.height = height * devicePixelRatio;
+    ctx.scale(devicePixelRatio, devicePixelRatio);
+
+    dots.length = 0;
+    for (let i = 0; i < dotsCount; i++) {
+      dots.push(new Dot());
+    }
+  }
+
+  // Draw lines between close dots
+  function connectDots() {
+    for (let i = 0; i < dots.length; i++) {
+      for (let j = i + 1; j < dots.length; j++) {
+        const dx = dots[i].x - dots[j].x;
+        const dy = dots[i].y - dots[j].y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+
+        if (dist < maxDistance) {
+          const opacity = 1 - dist / maxDistance;
+          ctx.strokeStyle = `rgba(0,188,212,${opacity * 0.4})`;
+          ctx.lineWidth = 1;
+          ctx.beginPath();
+          ctx.moveTo(dots[i].x, dots[i].y);
+          ctx.lineTo(dots[j].x, dots[j].y);
+          ctx.stroke();
+        }
+      }
+    }
+  }
+
+  // Animation loop
+  function animate() {
+    ctx.clearRect(0, 0, width, height);
+
+    dots.forEach(dot => {
+      dot.update();
+      dot.draw();
+    });
+
+    connectDots();
+
+    requestAnimationFrame(animate);
+  }
+
+  window.addEventListener('resize', () => {
+    init();
+  });
+
+  // Initialize and start
+  init();
+  animate();
+})();
+
